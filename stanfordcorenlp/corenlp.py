@@ -22,7 +22,7 @@ import requests
 
 
 class StanfordCoreNLP:
-    def __init__(self, path_or_host, port=None, memory='4g', lang='en', timeout=1500, quiet=True,
+    def __init__(self, path_or_host, port=None, memory='8g', lang='en', timeout=15000, quiet=True,
                  logging_level=logging.WARNING):
         self.path_or_host = path_or_host
         self.port = port
@@ -91,7 +91,7 @@ class StanfordCoreNLP:
             java_class = "edu.stanford.nlp.pipeline.StanfordCoreNLPServer"
             class_path = '"{}*"'.format(directory)
 
-            args = [cmd, java_args, '-cp', class_path, java_class, '-port', str(self.port)]
+            args = [cmd, java_args, '-cp', class_path, java_class, '-port', str(self.port), '-timeout', str(self.timeout)]
 
             args = ' '.join(args)
 
